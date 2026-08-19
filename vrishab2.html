@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Howrah Bedding House • Premium Home Furnishings</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
+
+body { font-family: 'Inter', sans-serif; }
+
+.display-font { font-family: 'Playfair Display', serif; }
+
+.hero-bg {
+  background: linear-gradient(rgba(60,40,30,0.6), rgba(40,30,20,0.6)),
+  url('https://media.istockphoto.com/id/2205842446/nl/foto/wabi-sabi-bedroom-features-an-oak-bedside-table-textured-clay-wall-decor-soft-linen-bed-linens.jpg?s=2048x2048&w=is&k=20&c=oYI6ohC1NT-1BQ6mJ4cmW4WgoWr8DFvwTCoXOA-9JqQ=');
+
+  background-size: cover;        /* 👈 better look */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.product-card:hover {
+  transform: translateY(-8px);
+  transition: 0.3s;
+}
+#modal-img {
+  transition: 0.4s;
+}
+
+#modal-img:hover {
+  transform: scale(1.2);
+}
+.logo-premium {
+  letter-spacing: 0.2em;
+  font-weight: 600;
+}
+
+.logo-sub {
+  letter-spacing: 0.5em;
+  font-size: 10px;
+  color: #888;
+}
+</style>
+</head>
+
+<body class="bg-[#F5F0E8] text-[#2C241E]">
+
+<!-- NAVBAR -->
+<nav class="sticky top-0 bg-white shadow z-50 px-6 py-4 flex justify-between items-center">
+  <div class="text-center">
+  <div class="display-font text-2xl logo-premium text-[#C9A96E]">
+    HOWRAH
+  </div>
+  <div class="logo-sub mt-1">
+    BEDDING HOUSE
+  </div>
+</div>
+    <div class="hidden md:flex gap-8">
+        <a href="#">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+		<a href="#reviews" class="nav-link text-[#4A3728]">Reviews</a>
+        <a href="#faq" class="nav-link text-[#4A3728]">FAQ</a>
+		
+    </div>
+	<div class="flex items-center gap-4">
+
+  <button id="login-btn" onclick="openAuth()" 
+  class="bg-black text-white px-4 py-2 rounded-xl">
+    Sign In
+  </button>
+   <button onclick="openQuiz()" 
+class="bg-[#C9A96E] text-white px-4 py-2 rounded-xl">
+  Find My Comfort
+</button>
+  <p id="user-name" class="hidden font-semibold"></p>
+  <button id="logout-btn" onclick="logout()" 
+class="hidden text-red-500 text-sm">
+  Logout
+</button>
+
+  <div onclick="toggleCart()" class="cursor-pointer relative">
+    🛒
+    <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 rounded-full">0</span>
+  </div>
+</div>
+  
+       
+</nav>
+
+<!-- HERO -->
+<section class="hero-bg h-[600px] flex items-center">
+<div class="max-w-6xl mx-auto px-6">
+
+<h1 class="display-font text-5xl text-white">
+Comfort that <br>
+<span class="text-yellow-200">transforms your home</span>
+</h1>
+
+<p class="text-white mt-4 max-w-md">
+Premium bedsheets, curtains, sofa covers and more designed for comfort & elegance.
+</p>
+
+<a href="#shop" class="inline-block mt-6 bg-black text-white px-6 py-3 rounded-xl">
+Shop Now
+</a>
+
+</div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="shop" class="py-16 px-6 max-w-7xl mx-auto">
+
+<h2 class="display-font text-4xl mb-10">Our Collection</h2>
+
+<div id="products" class="grid md:grid-cols-4 gap-6"></div>
+
+</section>
+
+<!-- CART -->
+<div id="overlay" onclick="toggleCart()" 
+class="fixed inset-0 bg-black/40 hidden z-40"></div>
+<div id="cart" class="fixed right-0 top-0 h-full w-80 bg-white shadow-lg p-6 translate-x-full transition z-50">
+
+<div class="flex justify-between items-center mb-4">
+  <h2 class="text-xl font-bold">Your Cart</h2>
+  <button onclick="toggleCart()" class="text-xl">✕</button>
+</div>
+
+<div id="cart-items"></div>
+
+<div class="mt-4 font-bold">
+Total: ₹<span id="total">0</span>
+</div>
+
+<button class="mt-4 w-full bg-black text-white py-2 rounded">
+Checkout
+</button>
+
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+
+    <!-- LEFT TEXT -->
+    <div>
+      <h2 class="display-font text-4xl mb-4">Our Story</h2>
+
+      <p class="text-gray-700 leading-relaxed">
+        At Howrah Bedding House, we believe comfort is not a luxury — it’s a necessity.
+        With years of experience in premium home furnishings, we bring you products
+        crafted with care, quality fabrics, and modern aesthetics.
+      </p>
+
+      <p class="mt-4 text-gray-600">
+        From soft bedsheets to elegant curtains, every piece is designed to transform
+        your home into a space of warmth, style, and comfort.
+      </p>
+
+      <!-- FEATURES -->
+      <div class="mt-6 grid grid-cols-2 gap-4">
+        <div class="bg-[#F5F0E8] p-4 rounded-xl text-center">
+          <p class="text-2xl">🛏</p>
+          <p class="text-sm mt-2">Premium Quality</p>
+        </div>
+        <div class="bg-[#F5F0E8] p-4 rounded-xl text-center">
+          <p class="text-2xl">🌿</p>
+          <p class="text-sm mt-2">Eco Friendly</p>
+        </div>
+        <div class="bg-[#F5F0E8] p-4 rounded-xl text-center">
+          <p class="text-2xl">🚚</p>
+          <p class="text-sm mt-2">Fast Delivery</p>
+        </div>
+        <div class="bg-[#F5F0E8] p-4 rounded-xl text-center">
+          <p class="text-2xl">💎</p>
+          <p class="text-sm mt-2">Luxury Design</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div>
+    <img src="https://images.unsplash.com/photo-1586105251261-72a756497a11?auto=format&fit=crop&w=800&q=80"
+    class="rounded-2xl shadow-lg w-full h-full object-cover">
+    </div>
+
+  </div>
+</section>
+<section id="reviews" class="py-20 bg-[#F5F0E8]">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+
+    <h2 class="display-font text-4xl mb-10">What Our Customers Say</h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- REVIEW 1 -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <p class="text-yellow-500 mb-2">★★★★★</p>
+        <p class="text-gray-700">
+          Absolutely loved the bedsheet quality. Super soft and premium feel!
+        </p>
+        <p class="mt-4 font-semibold">— Rahul Sharma</p>
+      </div>
+
+      <!-- REVIEW 2 -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <p class="text-yellow-500 mb-2">★★★★★</p>
+        <p class="text-gray-700">
+          Curtains look amazing in my room. Great fabric and design.
+        </p>
+        <p class="mt-4 font-semibold">— Priya Mehta</p>
+      </div>
+
+      <!-- REVIEW 3 -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <p class="text-yellow-500 mb-2">★★★★☆</p>
+        <p class="text-gray-700">
+          Sofa cover fits perfectly and is easy to wash. Totally worth it.
+        </p>
+        <p class="mt-4 font-semibold">— Aman Verma</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<div id="modal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50">
+
+  <div class="bg-[#F5F0E8] w-[90%] max-w-5xl rounded-2xl overflow-hidden grid md:grid-cols-2">
+
+    <!-- LEFT IMAGE -->
+    <div class="p-6 bg-[#EAE3D9]">
+     <div class="overflow-hidden rounded-xl">
+    <img id="modal-img" class="rounded-xl w-full h-[300px] object-cover">
+        </div>
+      <div class="mt-4 text-sm bg-white px-4 py-2 rounded-full inline-block shadow">
+        🌿 Organic • Raw • Small-batch
+      </div>
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="p-8 relative">
+
+      <!-- CLOSE BUTTON -->
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-xl">✕</button>
+
+      <p id="modal-tag" class="text-xs tracking-widest text-gray-500"></p>
+
+      <h2 id="modal-name" class="display-font text-3xl mt-2"></h2>
+
+      <!-- RATING -->
+      <div class="mt-2 text-yellow-500">
+        ⭐⭐⭐⭐⭐ <span class="text-gray-600 text-sm ml-2">128 reviews • 4.8</span>
+      </div>
+
+      <!-- DESCRIPTION -->
+      <p id="modal-desc" class="mt-4 text-gray-700"></p>
+
+      <!-- FEATURE BOXES -->
+      <div id="modal-box-features" class="grid grid-cols-3 gap-4 mt-6"></div>
+
+      <!-- TAG FEATURES -->
+      <div class="mt-6">
+        <p class="text-xs tracking-widest text-gray-500 mb-2">KEY FEATURES</p>
+        <div id="modal-features" class="flex gap-2 flex-wrap"></div>
+      </div>
+
+      <!-- QTY + BUTTON -->
+      <div class="flex items-center gap-4 mt-8">
+
+        <div class="flex items-center bg-gray-200 rounded-full px-4 py-2">
+          <button onclick="changeQty(-1)">-</button>
+          <span id="qty" class="mx-4">1</span>
+          <button onclick="changeQty(1)">+</button>
+        </div>
+
+       <button id="add-btn" onclick="addFromModal()" 
+       class="flex-1 bg-[#5A3E2B] text-white py-3 rounded-full">
+       ADD TO CART
+       </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<div id="auth-modal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50">
+
+  <div class="bg-white w-[90%] max-w-md p-6 rounded-2xl relative">
+
+    <!-- CLOSE -->
+    <button onclick="closeAuth()" class="absolute top-3 right-4 text-xl">✕</button>
+
+    <!-- TITLE -->
+    <h2 id="auth-title" class="text-2xl font-bold text-center">Login</h2>
+
+    <!-- FORM -->
+    <div class="mt-6 space-y-4">
+
+      <input id="email" type="email" placeholder="Email"
+      class="w-full border p-2 rounded">
+
+      <input id="password" type="password" placeholder="Password"
+      class="w-full border p-2 rounded">
+
+      <!-- NAME (for register only) -->
+      <input id="name" type="text" placeholder="Full Name"
+      class="w-full border p-2 rounded hidden">
+
+      <button id="auth-btn" onclick="handleAuth()" 
+      class="w-full bg-black text-white py-2 rounded">
+        Login
+      </button>
+
+      <!-- SWITCH -->
+      <p class="text-center text-sm">
+        <span id="switch-text">Don't have an account?</span>
+        <button onclick="toggleAuth()" class="text-blue-500">
+          Register
+        </button>
+      </p>
+
+    </div>
+
+  </div>
+</div>
+<footer class="bg-[#2C241E] text-white text-center py-8 mt-10">
+
+  <p class="display-font text-lg text-[#C9A96E]">
+    Howrah Bedding House
+  </p>
+
+  <p class="text-sm mt-2 text-gray-400">
+    © 2026 All Rights Reserved
+  </p>
+
+</footer>
+<div id="quiz-modal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50">
+
+  <div class="bg-white w-[90%] max-w-md p-6 rounded-2xl">
+
+    <h2 class="text-xl font-bold mb-4 text-center">Find Your Perfect Bedding</h2>
+
+    <!-- Q1 -->
+    <p>Do you sleep?</p>
+    <select id="q1" class="w-full border p-2 mb-3">
+      <option value="hot">Hot</option>
+      <option value="cold">Cold</option>
+    </select>
+
+    <!-- Q2 -->
+    <p>Preferred feel?</p>
+    <select id="q2" class="w-full border p-2 mb-3">
+      <option value="soft">Soft</option>
+      <option value="firm">Firm</option>
+    </select>
+
+    <!-- Q3 -->
+    <p>Your style?</p>
+    <select id="q3" class="w-full border p-2 mb-4">
+      <option value="minimal">Minimal</option>
+      <option value="luxury">Luxury</option>
+    </select>
+
+    <button onclick="generateRecommendation()" 
+    class="w-full bg-black text-white py-2 rounded">
+      Show My Results
+    </button>
+
+    <button onclick="closeQuiz()" 
+    class="w-full mt-2 text-sm text-gray-500">
+      Cancel
+    </button>
+
+  </div>
+</div>
+<script>
+
+const products = [
+{
+id:1,
+name:"Premium Bedsheet",
+price:899,
+img:"https://images.openai.com/thumbnails/url/QlNasnicDclRDkMwAADQEw0VH0iWZU3pLEyYYfuRqSpLVFHDdXar3WZ7v-_7aaQUk62qlJNxE5JWO1lyoLBJPmVLFNJ36tT0QrScHYb9_-zjpbIwuWqwg8GZozEfKCZpklihiWD6SoT1kME21mFkABYDpscRQRkv3-YtFpjCUxbL2bjzYnZn7HgNystB12649b3CWKsF1mBdHMf0Ut31azT8AClAOTM",
+desc:"Soft, breathable bedsheet for daily comfort.",
+tag:"PREMIUM FABRIC",
+features:["Premium Fabric","Soft Finish"],
+boxFeatures:[
+  {icon:"🎨", text:"DESIGN"},
+  {icon:"🛏", text:"STYLE"},
+  {icon:"✨", text:"PREMIUM"}
+]
+},
+{
+id:2,
+name:"Designer Bedcover",
+price:1299,
+img:"https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf",
+desc:"Elegant bedcover for modern homes.",
+tag:"PREMIUM FABRIC",
+features:["Premium Fabric","Soft Finish"],
+boxFeatures:[
+  {icon:"🎨", text:"DESIGN"},
+  {icon:"🛏", text:"STYLE"},
+  {icon:"✨", text:"PREMIUM"}
+]
+},
+{
+id:3,
+name:"Sofa Cover",
+price:999,
+img:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc",
+desc:"Protect your sofa with stylish covers.",
+tag:"STRETCHABLE FABRIC",
+features:["Elastic Fabric"],
+boxFeatures:[
+  {icon:"🛡", text:"PROTECTION"},
+  {icon:"🧼", text:"WASHABLE"},
+  {icon:"✨", text:"STYLISH"}
+]
+},
+{
+id:4,
+name:"Pillow Covers",
+price:299,
+img:"https://images.openai.com/thumbnails/url/45CsB3icDcnxDkJAHADgJ4rYRLbWYnY2dseY4p92nDDhuB_S2_RYvU19_37fTw3AhSnLZV9MG4eS7SDv91IlgEJTSMXQyaIeOG_66jye_mdeMDuiIsQaTGUe0TaljMTMIQwnwWzbjKPuVQnhxwhhnSOxxqrdEj-JfKjeU5gRI1O3uxMr3nJlVq6kmYOH5wHmRYyKq3lGYFE9uonJJeH6aH9NNDpV",
+desc:"Soft pillow covers for better sleep.",
+tag:"COMFORT FABRIC",
+features:["Soft","Washable"],
+boxFeatures:[
+  {icon:"🛏", text:"COMFORT"},
+  {icon:"🧼", text:"WASHABLE"},
+  {icon:"✨", text:"PREMIUM"}
+]
+},
+{
+id:5,
+name:"Curtains",
+price:1499,
+img:"https://images.openai.com/thumbnails/url/uTht23icu9mYUVJSUGylr5-al1xUWVCSmqJbkpRnpJdeXJJYkpmsl5yfq1-ckV9QkJmXbl9oC5SzcvRLsXRPDo7PjyiI8vf1C6-MN0lMSzQrtfTxS8x0iqpyj7CsKvctzjfODnLKTI2wNPc0DHJMqzArzw5yTqzwDfYKMDE0zbTQdS4trXLMcwUAh14ufQ",
+desc:"Elegant curtains to enhance your room.",
+tag:"LUXURY FABRIC",
+features:["Fade Resistant","Premium Look"],
+boxFeatures:[
+  {icon:"🎨", text:"DESIGN"},
+  {icon:"🏠", text:"HOME"},
+  {icon:"✨", text:"PREMIUM"}
+]
+}
+];
+
+let cart = [];
+
+function renderProducts(){
+let html="";
+products.forEach(p=>{
+html+=`
+<div onclick="openModal(${p.id})" class="product-card bg-white p-4 rounded shadow cursor-pointer">
+<div class="overflow-hidden rounded">
+  <img src="${p.img}" 
+  class="h-48 w-full object-cover transition duration-300 hover:scale-110">
+</div>
+<h3 class="font-semibold mt-2">${p.name}</h3>
+<p>₹${p.price}</p>
+
+<button onclick="event.stopPropagation(); addToCart(${p.id}, 1)" 
+class="bg-black text-white w-full mt-3 py-2 rounded">
+Quick Add
+</button>
+
+</div>`;
+});
+document.getElementById("products").innerHTML=html;
+}
+
+function addToCart(id, quantity = 1){
+  let product = products.find(p => p.id === id);
+
+  let existing = cart.find(item => item.id === id);
+
+  if(existing){
+    existing.qty += quantity;
+  } else {
+    cart.push({...product, qty: quantity});
+  }
+
+  updateCart();
+  showToast(product.name + " added");
+}
+
+function updateCart(){
+  let html = "";
+  let total = 0;
+  let count = 0;
+
+  cart.forEach((item, index) => {
+
+    html += `
+      <div class="border-b py-3">
+
+        <div class="flex justify-between">
+          <div>
+            <p class="font-semibold">${item.name}</p>
+            <p>₹${item.price} × ${item.qty}</p>
+          </div>
+
+          <button onclick="removeItem(${index})" 
+          class="text-red-500">✕</button>
+        </div>
+
+        <div class="flex gap-3 mt-2 items-center">
+          <button onclick="changeCartQty(${index}, -1)">-</button>
+          <span>${item.qty}</span>
+          <button onclick="changeCartQty(${index}, 1)">+</button>
+        </div>
+
+      </div>
+    `;
+
+    total += item.price * item.qty;
+    count += item.qty;
+  });
+
+  document.getElementById("cart-items").innerHTML = html;
+  document.getElementById("total").innerText = total;
+  document.getElementById("cart-count").innerText = count;
+}
+function changeCartQty(index, change){
+  cart[index].qty += change;
+
+  if(cart[index].qty <= 0){
+    cart.splice(index, 1);
+  }
+
+  updateCart();
+}
+function removeItem(index){
+  cart.splice(index, 1);  
+  updateCart();          
+}
+
+function toggleCart(){
+let c = document.getElementById("cart");
+let o = document.getElementById("overlay");
+
+c.classList.toggle("translate-x-full");
+o.classList.toggle("hidden");
+
+// prevent scrolling when cart open
+if(c.classList.contains("translate-x-full")){
+  document.body.style.overflow = "auto";
+} else {
+  document.body.style.overflow = "hidden";
+}
+}
+
+renderProducts();
+let currentProduct = null;
+let qty = 1;
+
+function openModal(id){
+  currentProduct = products.find(p=>p.id===id);
+  qty = 1;
+
+  document.getElementById("modal-name").innerText = currentProduct.name;
+  document.getElementById("modal-desc").innerText = currentProduct.desc;
+  document.getElementById("modal-img").src = currentProduct.img;
+  document.getElementById("modal-tag").innerText = currentProduct.tag;
+
+  // SMALL TAG FEATURES
+  let fHTML = "";
+  currentProduct.features.forEach(f=>{
+    fHTML += `<span class="bg-gray-200 px-3 py-1 rounded-full text-sm">${f}</span>`;
+  });
+  document.getElementById("modal-features").innerHTML = fHTML;
+
+  // BIG FEATURE BOXES
+  let boxHTML = "";
+  currentProduct.boxFeatures.forEach(b=>{
+    boxHTML += `
+      <div class="bg-[#EAE3D9] p-4 rounded-xl text-center">
+        <div class="text-2xl">${b.icon}</div>
+        <p class="text-sm mt-2">${b.text}</p>
+      </div>
+    `;
+  });
+  document.getElementById("modal-box-features").innerHTML = boxHTML;
+
+  document.getElementById("qty").innerText = qty;
+  document.getElementById("modal").classList.remove("hidden");
+  document.getElementById("add-btn").innerText =
+  "ADD TO CART — ₹" + currentProduct.price;
+}
+
+function closeModal(){
+  document.getElementById("modal").classList.add("hidden");
+}
+
+function changeQty(val){
+  qty = Math.max(1, qty + val);
+  document.getElementById("qty").innerText = qty;
+
+  document.getElementById("add-btn").innerText =
+    "ADD TO CART — ₹" + (currentProduct.price * qty);
+}
+function addFromModal(){
+  addToCart(currentProduct.id, qty);
+  closeModal();
+}
+function showToast(text){
+  let t = document.createElement("div");
+  t.innerText = text;
+
+  t.style.cssText = `
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:black;
+    color:white;
+    padding:10px 20px;
+    border-radius:20px;
+  `;
+
+  document.body.appendChild(t);
+
+  setTimeout(()=>t.remove(),1500);
+}
+let isLogin = true;
+
+function openAuth(){
+  document.getElementById("auth-modal").classList.remove("hidden");
+}
+
+function closeAuth(){
+  document.getElementById("auth-modal").classList.add("hidden");
+}
+
+function toggleAuth(){
+  isLogin = !isLogin;
+
+  document.getElementById("auth-title").innerText = isLogin ? "Login" : "Register";
+  document.getElementById("auth-btn").innerText = isLogin ? "Login" : "Register";
+  document.getElementById("switch-text").innerText = isLogin 
+    ? "Don't have an account?" 
+    : "Already have an account?";
+
+  document.getElementById("name").classList.toggle("hidden");
+}
+
+async function handleAuth(){
+  let email = document.getElementById("email").value;
+  let name = document.getElementById("name").value;
+
+  // LOGIN
+  if(isLogin){
+    if(!email){
+      alert("Enter email");
+      return;
+    }
+
+    try {
+      let res = await fetch("http://localhost:5000/users");
+      let users = await res.json();
+
+      let found = users.find(u => u.email === email);
+
+      if(!found){
+        alert("User not found ❌");
+        return;
+      }
+
+      localStorage.setItem("user", JSON.stringify(found));
+      showUser(found.name);
+
+    } catch(err){
+      console.log(err);
+    }
+
+  } 
+  // REGISTER
+  else {
+    if(!name || !email){
+      alert("Fill all fields");
+      return;
+    }
+
+    try {
+      // check duplicate
+      let res = await fetch("http://localhost:5000/users");
+      let users = await res.json();
+
+      let exists = users.find(u => u.email === email);
+
+      if(exists){
+        alert("User already exists ❌");
+        return;
+      }
+
+      // save to DB
+      let save = await fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, email })
+      });
+
+      let data = await save.json();
+
+      localStorage.setItem("user", JSON.stringify(data));
+      showUser(data.name);
+
+    } catch(err){
+      console.log(err);
+    }
+  }
+
+  closeAuth();
+
+  document.getElementById("email").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("name").value = "";
+}
+function showUser(username){
+  document.getElementById("login-btn").classList.add("hidden");
+
+  let user = document.getElementById("user-name");
+  user.classList.remove("hidden");
+  user.innerText = "Hi, " + username;
+
+  document.getElementById("logout-btn").classList.remove("hidden");
+}
+function logout(){
+  localStorage.removeItem("user");
+
+  document.getElementById("login-btn").classList.remove("hidden");
+
+  document.getElementById("user-name").classList.add("hidden");
+  document.getElementById("logout-btn").classList.add("hidden");
+}
+let savedUser = JSON.parse(localStorage.getItem("user"));
+
+if(savedUser){
+  showUser(savedUser.name);
+}
+function openQuiz(){
+  document.getElementById("quiz-modal").classList.remove("hidden");
+}
+
+function closeQuiz(){
+  document.getElementById("quiz-modal").classList.add("hidden");
+}
+function generateRecommendation(){
+  let sleep = document.getElementById("q1").value;
+  let feel = document.getElementById("q2").value;
+  let style = document.getElementById("q3").value;
+
+  let recommended = [];
+
+  products.forEach(p => {
+
+    // SIMPLE LOGIC (you can improve later)
+    if(sleep === "hot" && p.name.includes("Bedsheet")){
+      recommended.push(p);
+    }
+
+    if(style === "luxury" && p.name.includes("Curtains")){
+      recommended.push(p);
+    }
+
+    if(feel === "soft" && p.name.includes("Pillow")){
+      recommended.push(p);
+    }
+
+  });
+
+  showRecommendations(recommended);
+  closeQuiz();
+}
+function showRecommendations(items){
+  let html = "<h2 class='text-2xl mb-6'>Recommended For You</h2>";
+
+  items.forEach(p=>{
+    html += `
+    <div class="bg-white p-4 rounded shadow">
+      <img src="${p.img}" class="h-40 w-full object-cover rounded">
+      <h3 class="mt-2 font-semibold">${p.name}</h3>
+      <p>₹${p.price}</p>
+    </div>
+    `;
+  });
+
+  document.getElementById("products").innerHTML = html;
+}
+</script>
+
+</body>
+</html>
